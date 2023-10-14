@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+{% endblock %}
+
+
+
+{% block title %} HomePage {% endblock %}
+{% block content %}
+<!-- <ul>
+    <li><a href="">Home</a></li>
+    <li><a href="">Blogs</a></li>
+    <li><a href="">İmages</a></li>
+</ul> -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3">
+            {%include 'partials/_categories.html' %}
+        </div>
+        <div class="col-9">
+
+            <h1>HomePage</h1>
+            <hr>
+
+            {% for blog in blogs%}
+                {% if blog.is_home %}
+                    {% include 'blog/partials/_blog.html' %}
+                {% endif %}
+            {% endfor %}
+            <div class="card" style="width: 50rem;">
+                <img src="{% static 'img/mathplotlib-in-python.webp' %}" class="card-img-top" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">Blog App</h5>
+                  <p class="card-text">Bu uygulama, kullanıcıların pyhtondaki bazı araçların içeriğini anlatan bir platformdur. Blog sayfasıyla ile ilgili deneyimlerinizi, önerilerinizi ve paylaşımlarınızı bizimle paylaşın. Ayrıca, [Bootstrap, Django, NumPy, Selenium] gibi teknolojilerin nasıl kullanıldığını gösteren içeriklere de ulaşabilirsiniz.</p>
+                  <a href="/blogs" class="btn btn-primary">Tüm bloglara ulaşın.</a>
+                </div>
+              </div>
+
+
+
+{% endblock %}
+
+{% block js_files%}
+    <script src="{% static 'blog/js/script.js' %}"></script>
+{% endblock %}
